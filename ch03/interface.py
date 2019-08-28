@@ -7,10 +7,7 @@ class Qubit(metaclass=ABCMeta):
     def h(self): pass
 
     @abstractmethod
-    def x(self): pass  
-
-    @abstractmethod
-    def ry(self, angle : float): pass      # <1>     
+    def x(self): pass                 # <1>
 
     @abstractmethod
     def measure(self) -> bool: pass
@@ -22,19 +19,19 @@ class Qubit(metaclass=ABCMeta):
 # tag::device_interface[]
 class QuantumDevice(metaclass=ABCMeta):
     @abstractmethod
-    def allocate_qubit(self) -> Qubit:           
+    def allocate_qubit(self) -> Qubit:           # <1>
         pass
 
     @abstractmethod
-    def deallocate_qubit(self, qubit : Qubit):   
+    def deallocate_qubit(self, qubit : Qubit):   # <2>
         pass
 
     @contextmanager
-    def using_qubit(self):                       
+    def using_qubit(self):                       # <3>
         qubit = self.allocate_qubit()
         try:
             yield qubit
         finally:
-            qubit.reset()                        
+            qubit.reset()                        # <4>
             self.deallocate_qubit(qubit)
 # end::device_interface[]

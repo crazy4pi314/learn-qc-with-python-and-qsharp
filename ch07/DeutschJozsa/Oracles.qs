@@ -1,6 +1,5 @@
 namespace DeutschJozsa {
-    open Microsoft.Quantum.Primitive;
-    open Microsoft.Quantum.Canon;
+    open Microsoft.Quantum.Intrinsic;
 
     operation ZeroOracle(control : Qubit, target : Qubit) : Unit {
     }

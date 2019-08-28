@@ -1,16 +1,15 @@
 ﻿namespace Qrng {
-    open Microsoft.Quantum.Primitive;
+    open Microsoft.Quantum.Intrinsic;
 
     // tag::next-random[]
 
     operation NextRandomBit() : Result {                           // <1>
-        mutable result = Zero;                                     // <2>
-        using (qubit = Qubit()) {                                  // <3>
-            H(qubit);                                              // <4>
-            set result = M(qubit);                                 // <5>
-            Reset(qubit);                                          // <6>
+        using (qubit = Qubit()) {                                  // <2>
+            H(qubit);                                              // <3>
+            let result = M(qubit);                                 // <4>
+            Reset(qubit);                                          // <5>
+            return result;                                         // <6>
         }
-        return result;                                             // <7>
     }
 
     // end::next-random[]
