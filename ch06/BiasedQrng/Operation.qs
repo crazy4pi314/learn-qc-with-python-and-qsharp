@@ -1,10 +1,10 @@
 ﻿namespace Qrng {
-    open Microsoft.Quantum.Primitive;
-    open Microsoft.Quantum.Extensions.Math;
+    open Microsoft.Quantum.Intrinsic;
 
     // tag::main-body[]
 
-    open Microsoft.Quantum.Canon;                                       // <1>
+    open Microsoft.Quantum.Math;                                        // <1>
+    open Microsoft.Quantum.Measurement;
 
     operation PrepareBiasedCoin(winProbability : Double, qubit : Qubit) : Unit {
         let rotationAngle = 2.0 * ArcCos(Sqrt(1.0 - winProbability));   // <2>
@@ -12,12 +12,10 @@
     }
 
     operation NextRandomBit(statePreparation : (Qubit => Unit)) : Result {
-        mutable result = Zero;
         using (qubit = Qubit()) {
             statePreparation(qubit);                                    // <3>
-            set result = MResetZ(qubit);                                // <4>
+            return MResetZ(qubit);                                      // <4>
         }
-        return result;
     }
 
     operation PlayMorganasGame(winProbability : Double) : Unit {
