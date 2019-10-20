@@ -1,3 +1,15 @@
+#!/bin/env python
+# -*- coding: utf-8 -*-
+##
+# simulator.py: Defines a class that implements a single qubit simulator.
+##
+# Copyright (c) Sarah Kaiser and Chris Granade.
+# Code sample from the book "Learn Quantum Computing with Python and Q#" by
+# Sarah Kaiser and Chris Granade, published by Manning Publications Co.
+# Book ISBN 9781617296130.
+# Code licensed under the MIT License.
+##
+
 from interface import QuantumDevice, Qubit
 import numpy as np
 
@@ -36,5 +48,5 @@ class SingleQubitSimulator(QuantumDevice):
         if self.available_qubits:
             return self.available_qubits.pop()
 
-    def deallocate_qubit(self, qubit : SimulatedQubit):
+    def deallocate_qubit(self, qubit: SimulatedQubit):
         self.available_qubits.append(qubit)

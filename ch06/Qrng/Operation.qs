@@ -1,4 +1,12 @@
-﻿namespace Qrng {
+﻿// Operation.qs: Sample code for a quantum random number generator (Chapter 6).
+//
+// Copyright (c) Sarah Kaiser and Chris Granade.
+// Code sample from the book "Learn Quantum Computing with Python and Q#" by
+// Sarah Kaiser and Chris Granade, published by Manning Publications Co.
+// Book ISBN 9781617296130.
+// Code licensed under the MIT License.
+
+namespace Qrng {
     open Microsoft.Quantum.Intrinsic;
 
     // tag::next-random[]

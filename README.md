@@ -1,6 +1,6 @@
 # Learn Quantum Computing with Python and Q# <br> Sample Code #
 
-This repository provides sample code for [_Learn Quantum Computing with Python and Q#_](https://www.manning.com/books/learn-quantum-computing-with-python-and-q-sharp) (Dr. Sarah Kaiser and Chris Granade, Manning Publications), currently in Manning Early Access Preview.
+This repository provides sample code for [_Learn Quantum Computing with Python and Q#_](https://www.manning.com/books/learn-quantum-computing-with-python-and-q-sharp) (Dr. Sarah Kaiser and Dr. Chris Granade, Manning Publications), currently in Manning Early Access Preview.
 
 Below, we provide some instructions on getting started with each sample; please see Appendix A (coming soon) for more details.
 

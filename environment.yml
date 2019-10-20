@@ -1,0 +1,12 @@
+name: qsharp-book
+channels:
+- conda-forge
+dependencies:
+- notebook
+- numpy
+- scipy
+- qutip
+- matplotlib
+- pip
+- pip:
+    - qsharp
