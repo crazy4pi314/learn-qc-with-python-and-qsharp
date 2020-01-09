@@ -1,3 +1,16 @@
+#!/bin/env python
+# -*- coding: utf-8 -*-
+##
+# interface.py: Contains classes that define the interface to the qubit 
+#     simulator in simulator.py.
+##
+# Copyright (c) Sarah Kaiser and Chris Granade.
+# Code sample from the book "Learn Quantum Computing with Python and Q#" by
+# Sarah Kaiser and Chris Granade, published by Manning Publications Co.
+# Book ISBN 9781617296130.
+# Code licensed under the MIT License.
+##
+
 from abc import ABCMeta, abstractmethod
 from contextlib import contextmanager
 
@@ -5,7 +18,7 @@ from contextlib import contextmanager
 class Qubit(metaclass=ABCMeta):
 
     @abstractmethod
-    def swap(self, swap_target : "Qubit"): pass      # <1>     
+    def swap(self, swap_target: "Qubit"): pass                           # <1>     
     
 # end::qubit_interface[]
 
@@ -22,7 +35,7 @@ class Qubit(metaclass=ABCMeta):
     def z(self): pass  
 
     @abstractmethod
-    def ry(self, angle : float): pass
+    def ry(self, angle: float): pass
 
     @abstractmethod
     def measure(self) -> bool: pass
@@ -37,7 +50,7 @@ class QuantumDevice(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def deallocate_qubit(self, qubit : Qubit):   
+    def deallocate_qubit(self, qubit: Qubit):   
         pass
 
     @contextmanager
