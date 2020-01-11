@@ -1,4 +1,5 @@
 on: [push]
+name: Prebuild Docker images
 
 jobs:
   devcontainer:

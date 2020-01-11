@@ -1,5 +1,5 @@
 {
-    "dockerFile": "../Dockerfile",
+    "image": "cgranade/learn-qc-with-python-and-qsharp:cgranade-prebuild-docker",
     "remoteEnv": {
         "IQSHARP_HOSTING_ENV": "QSHARP_BOOK_DEVCONTAINER"
     }
