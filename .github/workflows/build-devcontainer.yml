@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          name: cgranade/learn-qc-with-python-and-qsharp
+          name: sckaiser/learn-qc-with-python-and-qsharp
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           dockerfile: .devcontainer/Dockerfile
