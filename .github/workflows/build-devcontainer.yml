@@ -1,0 +1,28 @@
+##
+# build-devcontainer.yml: GitHub Actions configuration for building sample
+#     Docker images.
+##
+# Copyright (c) Sarah Kaiser and Chris Granade.
+# Code sample from the book "Learn Quantum Computing with Python and Q#" by
+# Sarah Kaiser and Chris Granade, published by Manning Publications Co.
+# Book ISBN 9781617296130.
+# Code licensed under the MIT License.
+##
+
+on:
+  - push
+name: Prebuild Docker images
+
+jobs:
+  devcontainer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: sckaiser/learn-qc-with-python-and-qsharp
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          dockerfile: .devcontainer/Dockerfile
+          snapshot: true
