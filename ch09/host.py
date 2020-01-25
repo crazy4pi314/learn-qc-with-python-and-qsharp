@@ -10,26 +10,34 @@
 # Code licensed under the MIT License.
 ##
 
+# tag::setup[]
+
 import qsharp                                                            # <1>
-import HamiltonianSimulation as H2Simulation
+import HamiltonianSimulation as H2Simulation                              
 
-from typing import Any                                                   # <3>                              
+bond_lengths = H2Simulation.H2BondLengths.simulate()                     # <2>
 
-bond_lengths = H2Simulation.H2BondLengths.simulate()
-
-def estimate_energy(bond_index: float, n_measurements_per_scale: int = 3) -> float:
+def estimate_energy(bond_index: float,                                   # <3>
+                    n_measurements_per_scale: int = 3
+    ) -> float:
     print(f"Estimating energy of {bond_lengths[bond_index]}.")
     return min([H2Simulation.EstimateH2Energy.simulate(idxBondLength=bond_index) 
                     for _ in range(n_measurements_per_scale)])
 
+# end::setup[]
+
+# tag::main[]
+
 if __name__ == "__main__":
-    import matplotlib.pyplot as plt 
+    import matplotlib.pyplot as plt                                      # <1>
 
     print(f"Number of bond lengths: {len(bond_lengths)}.\n")
-    energies = [estimate_energy(i) for i in range(len(bond_lengths))]
-    plt.figure()                                                    
+    energies = [estimate_energy(i) for i in range(len(bond_lengths))]    # <2>
+    plt.figure()                                                         # <3>
     plt.plot(bond_lengths, energies, 'o')
     plt.title('Energy levels of H₂ as a function of bond length')
     plt.xlabel('Bond length (Å)')
     plt.ylabel('Ground state energy (Hartree)')
-    plt.show()
+    plt.show()                                                           # <4>
+
+# end::main[]
