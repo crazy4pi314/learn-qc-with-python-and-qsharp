@@ -148,14 +148,14 @@ namespace HamiltonianSimulation {
 
     //tag::apply_hamiltonian[]
     operation EvolveUnderHamiltonian(
-        idxBondLength : Int,                                                   // <1>
-        trotterStepSize : Double,                                              // <2>
+        idxBondLength : Int,                                                        // <1>
+        trotterStepSize : Double,                                                   // <2>
         qubits : Qubit[]                                                      
     )
     : Unit is Adj + Ctl {
-        let trotterOrder = 1;                                                  // <3>
-        let op = (5, EvolveUnderHamiltonianTerm(idxBondLength, _, _, _));      // <4>
-        (DecomposeIntoTimeStepsCA(op, trotterOrder))(trotterStepSize, qubits); // <5>
+        let trotterOrder = 1;                                                       // <3>
+        let op = EvolveUnderHamiltonianTerm(idxBondLength, _, _, _);                // <4>
+        (DecomposeIntoTimeStepsCA((5, op), trotterOrder))(trotterStepSize, qubits); // <5>
     }
     // end::apply_hamiltonian[]    
 
