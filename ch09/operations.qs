@@ -160,15 +160,15 @@ namespace HamiltonianSimulation {
     // end::apply_hamiltonian[]    
 
     // tag::estimate_h2_energy[]
-    operation EstimateH2Energy(idxBondLength : Int) : Double {
-        let nQubits = 2;
-        let trotterStepSize = 1.0;
-        let trotterStep = EvolveUnderHamiltonian(idxBondLength, trotterStepSize, _);
-        let estPhase = EstimateEnergy(nQubits, 
+    operation EstimateH2Energy(idxBondLength : Int) : Double {                       // <1>
+        let nQubits = 2;                                                             // <2>
+        let trotterStepSize = 1.0;                                                   // <3>
+        let trotterStep = EvolveUnderHamiltonian(idxBondLength, trotterStepSize, _); // <4>
+        let estPhase = EstimateEnergy(nQubits,                                       // <5>
                                       PrepareInitalState, 
                                       trotterStep, 
                                       RobustPhaseEstimation(6, _, _));
-        return estPhase / trotterStepSize + H2IdentityCoeff(idxBondLength);
+        return estPhase / trotterStepSize + H2IdentityCoeff(idxBondLength);          // <6>
     }
     // end::estimate_h2_energy[]
 
