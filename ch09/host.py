@@ -20,7 +20,7 @@ bond_lengths = H2Simulation.H2BondLengths.simulate()                     # <2>
 def estimate_energy(bond_index: float,                                   # <3>
                     n_measurements_per_scale: int = 3
     ) -> float:
-    print(f"Estimating energy of {bond_lengths[bond_index]}.")
+    print(f"Estimating energy for bond length of {bond_lengths[bond_index]} Å.")
     return min([H2Simulation.EstimateH2Energy.simulate(idxBondLength=bond_index) 
                     for _ in range(n_measurements_per_scale)])
 
