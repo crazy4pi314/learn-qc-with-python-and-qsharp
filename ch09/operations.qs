@@ -132,43 +132,43 @@ namespace HamiltonianSimulation {
     // end::h2_form[]
 
     // tag::apply_hamiltonian_term[]
-    operation ApplyHamiltonianTerm(
-        idxBondLength : Int, 
-        idxHamiltonian : Int, 
-        stepSize : Double, 
+    operation EvolveUnderHamiltonianTerm(
+        idxBondLength : Int,                                      // <1>
+        idxTerm : Int,                                            // <2>
+        stepSize : Double,                                        // <3>
         qubits : Qubit[]
     )
     : Unit is Adj + Ctl {
-        let (pauliString, idxQubits) = H2Terms(idxHamiltonian);               // <1>
-        let coeff = (H2Coeff(idxBondLength))[idxHamiltonian];                 // <2>
-        let op = Exp(pauliString, stepSize * coeff, _);                       // <3>
-        (RestrictedToSubregisterCA(op, idxQubits))(qubits);                   // <4>
+        let (pauliString, idxQubits) = H2Terms(idxTerm);          // <4>
+        let coeff = (H2Coeff(idxBondLength))[idxTerm];            // <5>
+        let op = Exp(pauliString, stepSize * coeff, _);           // <6>
+        (RestrictedToSubregisterCA(op, idxQubits))(qubits);       // <7>
     }
     // end::apply_hamiltonian_term[] 
 
     //tag::apply_hamiltonian[]
-    operation ApplyHamiltonian(
-        idxBondLength : Int,                                                  // <1>
-        trotterStepSize : Double,                                             // <2>
+    operation EvolveUnderHamiltonian(
+        idxBondLength : Int,                                                        // <1>
+        trotterStepSize : Double,                                                   // <2>
         qubits : Qubit[]                                                      
     )
     : Unit is Adj + Ctl {
-        let trotterOrder = 1;                                                 // <3>
-        let op = (5, ApplyHamiltonianTerm(idxBondLength, _, _, _));           // <4>
-        (DecomposeIntoTimeStepsCA(op, trotterOrder))(trotterStepSize, qubits);// <5>
+        let trotterOrder = 1;                                                       // <3>
+        let op = EvolveUnderHamiltonianTerm(idxBondLength, _, _, _);                // <4>
+        (DecomposeIntoTimeStepsCA((5, op), trotterOrder))(trotterStepSize, qubits); // <5>
     }
     // end::apply_hamiltonian[]    
 
     // tag::estimate_h2_energy[]
-    operation EstimateH2Energy(idxBondLength : Int) : Double {
-        let nQubits = 2;
-        let trotterStepSize = 1.0;
-        let trotterStep = ApplyHamiltonian(idxBondLength, trotterStepSize, _);
-        let estPhase = EstimateEnergy(nQubits, 
+    operation EstimateH2Energy(idxBondLength : Int) : Double {                       // <1>
+        let nQubits = 2;                                                             // <2>
+        let trotterStepSize = 1.0;                                                   // <3>
+        let trotterStep = EvolveUnderHamiltonian(idxBondLength, trotterStepSize, _); // <4>
+        let estPhase = EstimateEnergy(nQubits,                                       // <5>
                                       PrepareInitalState, 
                                       trotterStep, 
                                       RobustPhaseEstimation(6, _, _));
-        return estPhase / trotterStepSize + H2IdentityCoeff(idxBondLength);
+        return estPhase / trotterStepSize + H2IdentityCoeff(idxBondLength);          // <6>
     }
     // end::estimate_h2_energy[]
 

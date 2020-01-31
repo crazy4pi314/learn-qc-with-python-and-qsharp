@@ -1,4 +1,4 @@
-﻿// Algorithim.qs: Sample code for Deutsch Jozsa algorithim (Chapter 7).
+﻿// Algorithm.qs: Sample code for Deutsch Jozsa algorithm (Chapter 7).
 //
 // Copyright (c) Sarah Kaiser and Chris Granade.
 // Code sample from the book "Learn Quantum Computing with Python and Q#" by
@@ -12,7 +12,7 @@ namespace DeutschJozsa {
     open Microsoft.Quantum.Diagnostics;
 
     // tag::is-oracle-balanced[]
-    operation IsOracleBalanced(
+    operation CheckIfOracleIsBalanced(
             oracle : ((Qubit, Qubit) => Unit)              
     ) : Bool {
         using ((control, target) = (Qubit(), Qubit())) {   // <1>
@@ -32,10 +32,10 @@ namespace DeutschJozsa {
 
     // tag::entry-point[]
     operation RunDeutschJozsaAlgorithm() : Unit {
-        Fact(not IsOracleBalanced(ZeroOracle), "Test failed for zero oracle."); // <1>
-        Fact(not IsOracleBalanced(OneOracle), "Test failed for one oracle.");   // <2>
-        Fact(IsOracleBalanced(IdOracle), "Test failed for id oracle.");
-        Fact(IsOracleBalanced(NotOracle), "Test failed for not oracle.");
+        Fact(not CheckIfOracleIsBalanced(ApplyZeroOracle), "Test failed for zero oracle."); // <1>
+        Fact(not CheckIfOracleIsBalanced(ApplyOneOracle), "Test failed for one oracle.");   // <2>
+        Fact(CheckIfOracleIsBalanced(ApplyIdOracle), "Test failed for id oracle.");
+        Fact(CheckIfOracleIsBalanced(ApplyNotOracle), "Test failed for not oracle.");
 
         Message("All tests passed!");                                           // <3>
     }
