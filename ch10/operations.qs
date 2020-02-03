@@ -49,47 +49,45 @@ namespace GroverSearch {
     }
     // end::all_ones_reflect[]
 
-    operation ReflectAboutAllZeros(register : Qubit[]) : Unit is Adj + Ctl {
-        within {
-            PrepareAllOnes(register);
-        } apply {
-            ReflectAboutAllOnes(register);
-        }
+    // tag::initial_state_reflect[]
+    operation PrepareInitialState(register : Qubit[]) : Unit is Adj + Ctl {
+        ApplyToEachCA(H, register);                                     // <1>
     }
 
     operation ReflectAboutInitialState(
-        prepareInitialState : (Qubit[] => Unit is Adj), 
-        inputQubits : Qubit[]) 
+        prepareInitialState : (Qubit[] => Unit is Adj),                 // <2>
+        inputQubits : Qubit[])                                          // <3>
     : Unit {
-        within {
-            Adjoint prepareInitialState(inputQubits);
+        within {                                                        // <4>
+            Adjoint prepareInitialState(inputQubits);                   // <5>
+            PrepareAllOnes(register);                                   
         } apply {
-            ReflectAboutAllZeros(inputQubits);
+            ReflectAboutAllOnes(inputQubits);                           // <7>
         }
     }
+    // end::initial_state_reflect[]
 
+    // tag::marked_reflection[]
     operation ReflectAboutMarkedState(
-        markedItemOracle : ((Qubit[], Qubit) => Unit is Adj), 
-        inputQubits : Qubit[]) 
+        markedItemOracle : ((Qubit[], Qubit) => Unit is Adj),           // <1>
+        inputQubits : Qubit[])                                          // <2>
     : Unit is Adj + Ctl {
-        using (flag = Qubit()) {
+        using (flag = Qubit()) {                                        // <3>
             within {
-                markedItemOracle(inputQubits, flag);
+                H(flag);                                                // <4>
+                X(flag);
             } apply{
-                Z(flag);
+                markedItemOracle(inputQubits, flag);                    // <5>                                        
             }
         }
     }
+    // end::marked_reflection[]
 
     function NIterations(nQubits : Int) : Int {
         let nItems = 1 <<< nQubits;
         let angle = ArcSin(1. / Sqrt(IntAsDouble(nItems)));
         let nIterations = Round(0.25 * PI() / angle - 0.5);
         return nIterations;
-    }
-
-    operation PrepareInitialState(register : Qubit[]) : Unit is Adj + Ctl {
-        ApplyToEachCA(H, register);
     }
 
     operation ApplyOracle(
