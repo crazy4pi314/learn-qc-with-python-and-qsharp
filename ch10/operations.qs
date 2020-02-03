@@ -56,13 +56,14 @@ namespace GroverSearch {
 
     operation ReflectAboutInitialState(
         prepareInitialState : (Qubit[] => Unit is Adj),                 // <2>
-        inputQubits : Qubit[])                                          // <3>
+        register : Qubit[]                                              // <3>
+    )
     : Unit {
         within {                                                        // <4>
-            Adjoint prepareInitialState(inputQubits);                   // <5>
+            Adjoint prepareInitialState(register);                      // <5>
             PrepareAllOnes(register);                                   
         } apply {
-            ReflectAboutAllOnes(inputQubits);                           // <7>
+            ReflectAboutAllOnes(register);                              // <7>
         }
     }
     // end::initial_state_reflect[]
@@ -71,7 +72,7 @@ namespace GroverSearch {
     operation ReflectAboutMarkedState(
         markedItemOracle : ((Qubit[], Qubit) => Unit is Adj),           // <1>
         inputQubits : Qubit[])                                          // <2>
-    : Unit is Adj + Ctl {
+    : Unit is Adj {
         using (flag = Qubit()) {                                        // <3>
             within {
                 H(flag);                                                // <4>
@@ -101,7 +102,7 @@ namespace GroverSearch {
     operation RunGroverSearch() : Unit {
         let idxMarkedItem = 6;
         let markItem = ApplyOracle(idxMarkedItem, _, _);
-        let foundItem = GroverSearch(3, markItem);
+        let foundItem = SearchList(3, markItem);
         Message($"marked {idxMarkedItem} and found {foundItem}.");
     }
 }
