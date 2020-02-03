@@ -20,13 +20,34 @@ namespace GroverSearch {
     open Microsoft.Quantum.Math;
     // end::open_stmts[]
 
+    // tag::grover_search[]
+    operation SearchList(                                             // <1>
+        nQubits : Int,                                                // <2>
+        markItem : ((Qubit[], Qubit) => Unit is Adj)                  // <3>
+    )
+    : Int {                                                           // <4>
+        using (qubits = Qubit[nQubits]) {                             // <5>
+            PrepareInitialState(qubits);                              // <6>
+
+            for (idxIteration in 0..NIterations(nQubits) - 1) {       // <7>
+                ReflectAboutMarkedState(markItem, qubits);
+                ReflectAboutInitialState(PrepareInitialState, qubits);
+            }
+
+            return MeasureInteger(LittleEndian(qubits));              // <8>
+        }
+    }
+    // end::grover_search[]
+
+    // tag::all_ones_reflect[]
     operation PrepareAllOnes(register : Qubit[]) : Unit is Adj + Ctl {
-        ApplyToEachCA(X, register);
+        ApplyToEachCA(X, register);                                     // <1>
     }
 
     operation ReflectAboutAllOnes(register : Qubit[]) : Unit is Adj + Ctl {
-        Controlled Z(Most(register), Tail(register));
+        Controlled Z(Most(register), Tail(register));                   // <2>
     }
+    // end::all_ones_reflect[]
 
     operation ReflectAboutAllZeros(register : Qubit[]) : Unit is Adj + Ctl {
         within {
@@ -36,7 +57,10 @@ namespace GroverSearch {
         }
     }
 
-    operation ReflectAboutInitialState(prepareInitialState : (Qubit[] => Unit is Adj), inputQubits : Qubit[]) : Unit {
+    operation ReflectAboutInitialState(
+        prepareInitialState : (Qubit[] => Unit is Adj), 
+        inputQubits : Qubit[]) 
+    : Unit {
         within {
             Adjoint prepareInitialState(inputQubits);
         } apply {
@@ -44,7 +68,10 @@ namespace GroverSearch {
         }
     }
 
-    operation ReflectAboutMarkedState(markedItemOracle : ((Qubit[], Qubit) => Unit is Adj), inputQubits : Qubit[]) : Unit is Adj + Ctl {
+    operation ReflectAboutMarkedState(
+        markedItemOracle : ((Qubit[], Qubit) => Unit is Adj), 
+        inputQubits : Qubit[]) 
+    : Unit is Adj + Ctl {
         using (flag = Qubit()) {
             within {
                 markedItemOracle(inputQubits, flag);
@@ -65,20 +92,11 @@ namespace GroverSearch {
         ApplyToEachCA(H, register);
     }
 
-    operation GroverSearch(nQubits : Int, markItem : ((Qubit[], Qubit) => Unit is Adj)) : Int {
-        using (qubits = Qubit[nQubits]) {
-            PrepareInitialState(qubits);
-
-            for (idxIteration in 0..NIterations(nQubits) - 1) {
-                ReflectAboutMarkedState(markItem, qubits);
-                ReflectAboutInitialState(PrepareInitialState, qubits);
-            }
-
-            return MeasureInteger(LittleEndian(qubits));
-        }
-    }
-
-    operation ApplyOracle(idxMarkedItem : Int, register : Qubit[], flag : Qubit) : Unit is Adj + Ctl {
+    operation ApplyOracle(
+        idxMarkedItem : Int, 
+        register : Qubit[], 
+        flag : Qubit) 
+    : Unit is Adj + Ctl {
         (ControlledOnInt(idxMarkedItem, X))(register, flag);
     }
 
