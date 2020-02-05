@@ -39,15 +39,17 @@ namespace GroverSearch {
     }
     // end::grover_search[]
 
-    // tag::all_ones_reflect[]
+    // tag::prepare_all_ones[]
     operation PrepareAllOnes(register : Qubit[]) : Unit is Adj + Ctl {
         ApplyToEachCA(X, register);                                     // <1>
     }
+    // end::prepare_all_ones
 
+    // tag::reflect_about_all_ones[]
     operation ReflectAboutAllOnes(register : Qubit[]) : Unit is Adj + Ctl {
-        Controlled Z(Most(register), Tail(register));                   // <2>
+        Controlled Z(Most(register), Tail(register));                   // <1>
     }
-    // end::all_ones_reflect[]
+    // end::reflect_about_all_ones[]
 
     // tag::initial_state_reflect[]
     operation PrepareInitialState(register : Qubit[]) : Unit is Adj + Ctl {
