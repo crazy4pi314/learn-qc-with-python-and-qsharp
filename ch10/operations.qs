@@ -43,7 +43,7 @@ namespace GroverSearch {
     operation PrepareAllOnes(register : Qubit[]) : Unit is Adj + Ctl {
         ApplyToEachCA(X, register);                                     // <1>
     }
-    // end::prepare_all_ones
+    // end::prepare_all_ones[]
 
     // tag::reflect_about_all_ones[]
     operation ReflectAboutAllOnes(register : Qubit[]) : Unit is Adj + Ctl {
