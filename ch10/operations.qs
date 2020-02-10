@@ -58,8 +58,8 @@ namespace GroverSearch {
     : Unit is Adj {
         using (flag = Qubit()) {                                        // <3>
             within {
-                H(flag);                                                // <4>
-                Z(flag);
+                X(flag);                                                // <4>
+                H(flag);
             } apply{
                 markedItemOracle(inputQubits, flag);                    // <5>                                        
             }
