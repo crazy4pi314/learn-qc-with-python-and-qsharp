@@ -155,7 +155,7 @@ namespace HamiltonianSimulation {
     : Unit is Adj + Ctl {
         let trotterOrder = 1;                                                       // <3>
         let op = EvolveUnderHamiltonianTerm(idxBondLength, _, _, _);                // <4>
-        (DecomposeIntoTimeStepsCA((5, op), trotterOrder))(trotterStepSize, qubits); // <5>
+        (DecomposedIntoTimeStepsCA ((5, op), trotterOrder))(trotterStepSize, qubits); // <5>
     }
     // end::apply_hamiltonian[]    
 
