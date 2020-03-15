@@ -80,4 +80,4 @@ if __name__ == "__main__":
                     100
                 )
     print(f"Quantum strategy won {quantum_pr:0.1%} of the time " \
-            "with initial state:\n{initial_state}.")
+          f"with initial state:\n{initial_state}.")
