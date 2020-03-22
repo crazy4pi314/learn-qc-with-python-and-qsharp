@@ -87,7 +87,7 @@ namespace GroverSearch {
     //end::apply_oracle[]
 
     // tag::grover_search[]
-    operation SearchList(                                             // <1>
+    operation SearchForMarkedItem(                                    // <1>
         nQubits : Int,                                                // <2>
         markItem : ((Qubit[], Qubit) => Unit is Adj)                  // <3>
     )
@@ -109,7 +109,7 @@ namespace GroverSearch {
     operation RunGroverSearch() : Unit {
         let idxMarkedItem = 6;                                          // <1>
         let markItem = ApplyOracle(idxMarkedItem, _, _);                // <2>
-        let foundItem = SearchList(3, markItem);                        // <3>
+        let foundItem = SearchForMarkedItem(3, markItem);               // <3>
         Message($"marked {idxMarkedItem} and found {foundItem}.");      // <4>
     }
     //end::grover_sample[]
