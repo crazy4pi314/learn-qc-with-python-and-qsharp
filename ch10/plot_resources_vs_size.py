@@ -21,7 +21,9 @@ if __name__ == "__main__":
         depth[idx_n_qubits] = estimate['Depth']
 
     plt.plot(n_itemses, n_itemses, label='Classical')
-    plt.plot(n_itemses, depth, label='Quantum')
+    plt.plot(n_itemses, depth, label='Quantum',linestyle='--')
     plt.xlabel('# of Items')
     plt.ylabel('# of Steps')
     plt.legend()
+
+    plt.show()
