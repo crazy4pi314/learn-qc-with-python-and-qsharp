@@ -63,14 +63,15 @@ namespace IntegerFactorization {
 
     // tag::maybe_factors[]
     function MaybeFactorsFromPeriod(
-        generator : Int, period : Int, number : Int)
-    : (Bool, (Int, Int)) {
-        if (period % 2 == 0) {
+        generator : Int, period : Int, number : Int                           // <1>
+    )
+    : (Bool, (Int, Int)) {                                                    // <2>
+        if (period % 2 == 0) {                                                // <3>
 
-            let halfPower = ExpModI(generator, period / 2, number);
+            let halfPower = ExpModI(generator, period / 2, number);           // <4>
 
-            if (halfPower != number - 1) {
-                let factor = MaxI(
+            if (halfPower != number - 1) {                                    // <5>
+                let factor = MaxI(                                            // <6>
                     GreatestCommonDivisorI(halfPower - 1, number),
                     GreatestCommonDivisorI(halfPower + 1, number)
                 );
