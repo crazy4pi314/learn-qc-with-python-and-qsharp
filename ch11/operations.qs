@@ -22,7 +22,8 @@ namespace IntegerFactorization {
     // end::open_stmts[]
 
     // tag::factor_semiprime[]
-    operation FactorSemiprimeInteger(number : Int) : (Int, Int) {
+    operation FactorSemiprimeInteger(number : Int) 
+    : (Int, Int) {
         if (number % 2 == 0) {                                                // <1>
             Message("An even number has been given; 2 is a factor.");
             return (number / 2, 2);
@@ -39,18 +40,16 @@ namespace IntegerFactorization {
                 set (foundFactors, factors) = MaybeFactorsFromPeriod(         // <7>
                     generator, period, number
                 );
-            }
-            else {
+            } else {
                 let gcd = GreatestCommonDivisorI(number, generator);          // <8>
                 Message(
                     $"We have guessed a divisor of {number} to be " +
                     $"{gcd} by accident. Nothing left to do."
                 );
-                set foundFactors = true;                                      
-                set factors = (gcd, number / gcd);                            
+                set foundFactors = true;
+                set factors = (gcd, number / gcd);
             }
-        } 
-        until (foundFactors)                                                  // <9>
+        } until (foundFactors)                                                // <9>
         fixup {                                                               // <10>
             Message(
                 "The estimated period did not yield a valid factor, " +
@@ -86,36 +85,35 @@ namespace IntegerFactorization {
     // end::maybe_factors[]
 
     // tag::estimate_period[]
-    operation EstimatePeriod(generator : Int, modulus : Int) : Int {
-        Fact(
-            IsCoprimeI(generator, modulus), 
+    operation EstimatePeriod(generator : Int, modulus : Int) 
+    : Int {
+        Fact(                                                                 // <1>
+            IsCoprimeI(generator, modulus),                                   // <2>
             "`generator` and `modulus` must be co-prime"
         );
 
-        let bitSize = BitSizeI(modulus);
-        let nBitsPrecision = 2 * bitSize + 1;
-        mutable result = 1;
+        let bitSize = BitSizeI(modulus);                                      // <3>
+        let nBitsPrecision = 2 * bitSize + 1;                                 // <4>
+        mutable result = 1;                                                   // <5>
         mutable frequencyEstimate = 0;
 
-        repeat {
-            set frequencyEstimate = EstimateFrequency(
-                ApplyOrderFindingOracle(generator, modulus, _, _),
+        repeat {                                                              // <6>
+            set frequencyEstimate = EstimateFrequency(                        // <7>
+                ApplyOrderFindingOracle(generator, modulus, _, _),            // <8>
                 nBitsPrecision, bitSize
             );
 
-            if (frequencyEstimate != 0) {
-                set result = PeriodFromFrequency(
-                    frequencyEstimate, nBitsPrecision, 
+            if (frequencyEstimate != 0) {                                     // <9>
+                set result = PeriodFromFrequency(                             // <10>
+                    frequencyEstimate, nBitsPrecision,
                     modulus, result
                 );
-            }
-            else {
+            }else {
                 Message("The estimated frequency was 0, trying again.");
             }
-        }
-        until(ExpModI(generator, result, modulus) == 1)
+        } until(ExpModI(generator, result, modulus) == 1)                     // <11>
         fixup {
-            Message(
+            Message(                                                          // <12>
                 "The estimated period from continued fractions failed, " +
                 "trying again."
             );
@@ -131,18 +129,19 @@ namespace IntegerFactorization {
         bitSize : Int
     )
     : Int {
-        using (eigenstateRegister = Qubit[bitSize]) {
+        using (eigenstateRegister = Qubit[bitSize]) {                         // <1>
 
-            let eigenstateRegisterLE = LittleEndian(eigenstateRegister);
-            ApplyXorInPlace(1, eigenstateRegisterLE);
+            let eigenstateRegisterLE = LittleEndian(eigenstateRegister);      // <2>
+            ApplyXorInPlace(1, eigenstateRegisterLE);                         // <3>
 
-            let phase = RobustPhaseEstimation(
-                nBitsPrecision, DiscreteOracle(inputOracle), 
+            let phase = RobustPhaseEstimation(                                // <4>
+                nBitsPrecision,
+                DiscreteOracle(inputOracle),                                  // <5>
                 eigenstateRegisterLE!
             );
-            ResetAll(eigenstateRegister);
+            ResetAll(eigenstateRegister);                                     // <6>
 
-            return Round(
+            return Round(                                                     // <7>
                 ((phase * IntAsDouble(2 ^ nBitsPrecision)) / 2.0) / PI()
             );
         }
@@ -151,24 +150,34 @@ namespace IntegerFactorization {
 
     // tag::period_from_freq[]
     function PeriodFromFrequency(
-        frequencyEstimate : Int, nBitsPrecision : Int, modulus : Int, result : Int
+        frequencyEstimate : Int, nBitsPrecision : Int,
+        modulus : Int, result : Int
     )
     : Int {
         let continuedFraction = ContinuedFractionConvergentI(
             Fraction(frequencyEstimate, 2^nBitsPrecision), modulus
         );
         let denominator = AbsI(Snd(continuedFraction!));
-        return (denominator * result) / GreatestCommonDivisorI(result, denominator);
+        return (denominator * result) / GreatestCommonDivisorI(
+            result, denominator
+        );
     }
     // end::period_from_freq[]
 
     // tag::oracle[]
-    operation ApplyOrderFindingOracle(
+    internal operation ApplyOrderFindingOracle(
         generator : Int, modulus : Int, power : Int, target : Qubit[]
     )
     : Unit is Adj + Ctl {
-        Fact(IsCoprimeI(generator, modulus), "`generator` and `modulus` must be co-prime");
-        MultiplyByModularInteger(ExpModI(generator, power, modulus), modulus, LittleEndian(target));
+        Fact(                                                                 // <1>
+            IsCoprimeI(generator, modulus),
+            "`generator` and `modulus` must be co-prime"
+        );
+        MultiplyByModularInteger(                                             // <2>
+            ExpModI(generator, power, modulus),                               // <3>
+            modulus,
+            LittleEndian(target)                                              // <4>
+        );
     }
     // end::oracle[]
 }
