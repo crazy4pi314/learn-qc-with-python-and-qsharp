@@ -129,17 +129,17 @@ namespace IntegerFactorization {
         bitSize : Int
     )
     : Int {
-        using (eigenstateRegister = Qubit[bitSize]) {                         // <1>
+        using (register = Qubit[bitSize]) {                         // <1>
 
-            let eigenstateRegisterLE = LittleEndian(eigenstateRegister);      // <2>
-            ApplyXorInPlace(1, eigenstateRegisterLE);                         // <3>
+            let registerLE = LittleEndian(register);      // <2>
+            ApplyXorInPlace(1, registerLE);                         // <3>
 
             let phase = RobustPhaseEstimation(                                // <4>
                 nBitsPrecision,
                 DiscreteOracle(inputOracle),                                  // <5>
-                eigenstateRegisterLE!
+                registerLE!
             );
-            ResetAll(eigenstateRegister);                                     // <6>
+            ResetAll(register);                                     // <6>
 
             return Round(                                                     // <7>
                 ((phase * IntAsDouble(2 ^ nBitsPrecision)) / 2.0) / PI()
