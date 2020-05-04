@@ -99,7 +99,7 @@ namespace IntegerFactorization {
 
         repeat {                                                              // <6>
             set frequencyEstimate = EstimateFrequency(                        // <7>
-                ApplyOrderFindingOracle(generator, modulus, _, _),            // <8>
+                ApplyPeriodFindingOracle(generator, modulus, _, _),           // <8>
                 nBitsPrecision, bitSize
             );
 
@@ -108,7 +108,7 @@ namespace IntegerFactorization {
                     frequencyEstimate, nBitsPrecision,
                     modulus, result
                 );
-            }else {
+            } else {
                 Message("The estimated frequency was 0, trying again.");
             }
         } until(ExpModI(generator, result, modulus) == 1)                     // <11>
@@ -165,13 +165,13 @@ namespace IntegerFactorization {
     // end::period_from_freq[]
 
     // tag::oracle[]
-    internal operation ApplyOrderFindingOracle(
+    internal operation ApplyPeriodFindingOracle(
         generator : Int, modulus : Int, power : Int, target : Qubit[]
     )
     : Unit is Adj + Ctl {
         Fact(                                                                 // <1>
             IsCoprimeI(generator, modulus),
-            "`generator` and `modulus` must be co-prime"
+            "The generator and modulus must be co-prime."
         );
         MultiplyByModularInteger(                                             // <2>
             ExpModI(generator, power, modulus),                               // <3>
