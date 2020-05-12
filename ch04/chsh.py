@@ -31,7 +31,7 @@ def referee(strategy: Callable[[], Strategy]) -> bool:
     parity = 0 if you(your_input) == eve(eve_input) else 1               # <5>
     return parity == (your_input and eve_input)                          # <6>
 
-def est_win_probability(strategy: Strategy,                              # <7>
+def est_win_probability(strategy: Callable[[], Strategy],                # <7>
                         n_games: int = 1000) -> float:
     return sum(
         referee(strategy)
