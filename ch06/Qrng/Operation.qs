@@ -1,4 +1,4 @@
-﻿// Operation.qs: Sample code for a quantum random number generator (Chapter 6).
+// Operation.qs: Sample code for a quantum random number generator (Chapter 6).
 //
 // Copyright (c) Sarah Kaiser and Chris Granade.
 // Code sample from the book "Learn Quantum Computing with Python and Q#" by
