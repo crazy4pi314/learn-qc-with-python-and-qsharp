@@ -47,7 +47,6 @@ def constant_strategy() -> Strategy:
     )
 # end::constant_strat[]
 
-#TODO: modify so initial state input makes sense
 # tag::quantum_strat[]
 import qutip as qt
 def quantum_strategy(initial_state: qt.Qobj) -> Strategy:
