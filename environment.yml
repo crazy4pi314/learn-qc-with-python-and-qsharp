@@ -9,4 +9,4 @@ dependencies:
 - matplotlib
 - pip
 - pip:
-    - qsharp=0.10.2002.2610
+    - qsharp==0.10.2002.2610
