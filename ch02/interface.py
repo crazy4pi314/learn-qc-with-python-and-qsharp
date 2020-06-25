@@ -11,10 +11,10 @@
 # Code licensed under the MIT License.
 ##
 
-from abc import ABCMeta, abstractmethod
-from contextlib import contextmanager
 
 # tag::qubit_interface[]
+from abc import ABCMeta, abstractmethod
+from contextlib import contextmanager
 class Qubit(metaclass=ABCMeta):
     @abstractmethod
     def h(self): pass                                                    # <1>
