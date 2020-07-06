@@ -1,14 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">                                                                       <!--1-->
+<Project Sdk="Microsoft.Quantum.Sdk/0.12.20070124">
 
-  <PropertyGroup>                                                                                       <!--2-->
+  <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
-
-  <ItemGroup>                                                                                           <!--3-->
-    <PackageReference Include="Microsoft.Quantum.Standard" Version="0.10.2002.2610" />
-    <PackageReference Include="Microsoft.Quantum.Development.Kit" Version="0.10.2002.2610" />
-  </ItemGroup>
 
 </Project>

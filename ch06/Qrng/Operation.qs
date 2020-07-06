@@ -14,14 +14,13 @@ namespace Qrng {
     operation NextRandomBit() : Result {                           // <1>
         using (qubit = Qubit()) {                                  // <2>
             H(qubit);                                              // <3>
-            let result = M(qubit);                                 // <4>
-            Reset(qubit);                                          // <5>
-            return result;                                         // <6>
+            return M(qubit);                                       // <4>
         }
     }
 
     // end::next-random[]
 
+    @EntryPoint()
     // tag::play-morganas[]
 
     operation PlayMorganasGame() : Unit {

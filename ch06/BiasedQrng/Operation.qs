@@ -36,11 +36,15 @@ namespace Qrng {
             set done = (NextRandomBit(prep) == Zero);
         }
         until (done)
-        fixup {}
 
         Message($"It took Lancelot {nRounds} turns to get home.");
     }
 
     // end::main-body[]
+
+    @EntryPoint()
+    operation RunPlayMorganasGame() : Unit {
+        PlayMorganasGame(0.95);
+    }
 
 }
