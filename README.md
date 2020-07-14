@@ -1,10 +1,10 @@
 # Learn Quantum Computing with Python and Q# <br> Sample Code #
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/crazy4pi314/learn-qc-with-python-and-qsharp/master)
-[![](https://img.shields.io/badge/Q%23%20dependencies-0.12-blue)](https://docs.microsoft.com/en-us/quantum/resources/relnotes#version-01220070124)
+[![discord](https://img.shields.io/discord/713831924451377193)](https://discord.gg/RmReNjt)
+[![Qsharp-version](https://img.shields.io/badge/Q%23%20dependencies-0.12-blue)](https://docs.microsoft.com/en-us/quantum/resources/relnotes#version-01220070124)
 ![Prebuild Docker images](https://github.com/crazy4pi314/learn-qc-with-python-and-qsharp/workflows/Prebuild%20Docker%20images/badge.svg?branch=master)
-[![](https://img.shields.io/github/license/crazy4pi314/learn-qc-with-python-and-qsharp)](https://github.com/crazy4pi314/learn-qc-with-python-and-qsharp/blob/master/LICENSE)
-
+[![licence](https://img.shields.io/github/license/crazy4pi314/learn-qc-with-python-and-qsharp)](https://github.com/crazy4pi314/learn-qc-with-python-and-qsharp/blob/master/LICENSE)
 
 This repository provides sample code for [_Learn Quantum Computing with Python and Q#_](https://www.manning.com/books/learn-quantum-computing-with-python-and-q-sharp) (Dr. Sarah Kaiser and Dr. Chris Granade, Manning Publications), currently in Manning Early Access Preview.
 
