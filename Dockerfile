@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/quantum/iqsharp-base:0.10.2002.2610
+FROM mcr.microsoft.com/quantum/iqsharp-base:0.12.20070124
 
 ENV IQSHARP_HOSTING_ENV=QSHARP_BOOK_DOCKERFILE
 
