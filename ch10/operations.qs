@@ -87,20 +87,20 @@ namespace GroverSearch {
     //end::apply_oracle[]
 
     // tag::grover_search[]
-    operation SearchForMarkedItem(                                    // <1>
-        nItems : Int,                                                // <2>
-        markItem : ((Qubit[], Qubit) => Unit is Adj)                  // <3>
+    operation SearchForMarkedItem(                                      // <1>
+        nItems : Int,                                                   // <2>
+        markItem : ((Qubit[], Qubit) => Unit is Adj)                    // <3>
     )
-    : Int {                                                           // <4>
-        using (qubits = Qubit[BitSizeI(nItems)]) {                             // <5>
-            PrepareInitialState(qubits);                              // <6>
+    : Int {                                                             // <4>
+        using (qubits = Qubit[BitSizeI(nItems)]) {                      // <5>
+            PrepareInitialState(qubits);                                // <6>
 
-            for (idxIteration in 0..NIterations(BitSizeI(nItems)) - 1) {       // <7>
+            for (idxIteration in 0..NIterations(BitSizeI(nItems)) - 1) {// <7>
                 ReflectAboutMarkedState(markItem, qubits);
                 ReflectAboutInitialState(PrepareInitialState, qubits);
             }
 
-            return MeasureInteger(LittleEndian(qubits));              // <8>
+            return MeasureInteger(LittleEndian(qubits));                // <8>
         }
     }
     // end::grover_search[]
@@ -109,7 +109,7 @@ namespace GroverSearch {
     operation RunGroverSearch(nItems : Int, idxMarkedItem : Int) : Unit {
         let markItem = ApplyOracle(idxMarkedItem, _, _);                // <1>
         let foundItem = SearchForMarkedItem(nItems, markItem);          // <2>
-        Message($"marked {idxMarkedItem} and found {foundItem}.");      // <3>
+        Message($"Marked {idxMarkedItem} and found {foundItem}.");      // <3>
     }
     //end::grover_sample[]
 }

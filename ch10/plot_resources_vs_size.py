@@ -17,7 +17,7 @@ if __name__ == "__main__":
         depth[idx] = estimate['Depth']
 
     plt.plot(n_search_items, n_search_items, label='Classical')
-    plt.plot(n_search_items, depth, label='Quantum',linestyle='--')
+    plt.plot(n_search_items, depth, label='Quantum', linestyle='--')
     plt.xlabel('# of Items')
     plt.ylabel('# of Steps')
     plt.legend()
