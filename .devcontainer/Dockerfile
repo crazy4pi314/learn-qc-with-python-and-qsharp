@@ -1,7 +1,7 @@
 # This Dockerfile is used by the GitHub Action in
 # .github/workflows/build-container.yml to build the Docker image used for
 # Visual Studio Code remote development, Visual Studio Online.
-FROM mcr.microsoft.com/quantum/iqsharp-base:0.11.2004.2825
+FROM mcr.microsoft.com/quantum/iqsharp-base:0.12.2007.124
 
 ENV IQSHARP_HOSTING_ENV=QSHARP_BOOK_DEVCONTAINER
 

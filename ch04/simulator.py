@@ -59,7 +59,7 @@ class SimulatedQubit(Qubit):
         ]
         sample = np.random.choice([0, 1], p=probabilities)               # <5>
         self.parent.register_state = post_measurement_states[sample].unit()   # <6>
-        return int(sample)
+        return bool(sample)
 
     def reset(self) -> None:                                             # <7>
         if self.measure(): self.x()
