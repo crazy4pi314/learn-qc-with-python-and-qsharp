@@ -6,13 +6,13 @@
 [![](https://img.shields.io/github/license/crazy4pi314/learn-qc-with-python-and-qsharp)](https://github.com/crazy4pi314/learn-qc-with-python-and-qsharp/blob/main/LICENSE)
 
 
-This repository provides sample code for [_Learn Quantum Computing with Python and Q#_](https://www.manning.com/books/learn-quantum-computing-with-python-and-q-sharp) (Dr. Sarah Kaiser and Dr. Chris Granade, Manning Publications), currently in Manning Early Access Preview.
+This repository provides sample code for [_Learn Quantum Computing with Python and Q#_](https://www.manning.com/books/learn-quantum-computing-with-python-and-q-sharp) (Dr. Sarah Kaiser and Dr. Chris Granade, Manning Publications), available from [Manning Publications](https://www.manning.com/books/learn-quantum-computing-with-python-and-q-sharp?a_aid=learn-qc-granade&a_bid=ee23f338), [Amazon](https://www.amazon.com/Learn-Quantum-Computing-Python-hands/dp/1617296139/), and a variety of local resellers.
 
 Below, we provide some instructions on getting started with each sample; please see [Appendix A](https://livebook.manning.com/book/learn-quantum-computing-with-python-and-q-sharp/appendix-a?origin=product-toc) for more details.
 
 ## Getting Started with Code Samples ##
 
-The samples for Chapters 2 through 5 are written in Python, while the examples in Chapters 6 and later are written in Q# and are called from either Python or by IQ# Notebooks.
+The samples for Chapters 2 through 6 are written in Python, while the examples in Chapters 7 and later are written in Q# and are called from either Python or by IQ# Notebooks.
 All samples can be run in one of two ways, depending on your preferences:
 
 - Using [conda](https://docs.conda.io/en/latest/) (a distribution of Python) and the [Quantum Development Kit](https://docs.microsoft.com/quantum) together
