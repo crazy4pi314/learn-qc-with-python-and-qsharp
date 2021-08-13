@@ -24,7 +24,7 @@ H = np.array([
 X = np.array([
     [0, 1],
     [1, 0]
-], dtype=complex) / np.sqrt(2)
+], dtype=complex)
 
 class SimulatedQubit(Qubit):
     def __init__(self):
