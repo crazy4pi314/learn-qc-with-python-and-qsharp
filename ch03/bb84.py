@@ -62,7 +62,7 @@ def send_single_bit_with_bb84(
 
     return ((your_message, your_basis), (eve_result, eve_basis))
 
-def simulate_bb84(n_bits: int) -> tuple:
+def simulate_bb84(n_bits: int) -> list:
     your_device = SingleQubitSimulator()
     eve_device = SingleQubitSimulator()
 
