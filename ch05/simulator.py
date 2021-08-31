@@ -38,7 +38,7 @@ class SimulatedQubit(Qubit):
 
     def measure(self) -> bool:
         projectors = [
-            qt.circuit.gate_expand_1toN(
+            qt.operations.gates.gate_expand_1toN(
                 qt.basis(2, outcome) * qt.basis(2, outcome).dag(),
                 self.parent.capacity,
                 self.qubit_id
@@ -85,7 +85,7 @@ class Simulator(QuantumDevice):
 
     def _apply(self, unitary: qt.Qobj, ids: List[int]):
         if len(ids) == 1:
-            matrix = qt.circuit.gate_expand_1toN(
+            matrix = qt.operations.gates.gate_expand_1toN(
                 unitary, self.capacity, ids[0]
             )
         else:
