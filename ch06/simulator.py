@@ -121,7 +121,7 @@ class Simulator(QuantumDevice):
             matrix = qt.operations.gates.gate_expand_1toN(unitary,
                                                  self.capacity, ids[0])
         elif len(ids) == 2:
-            matrix = qt.circuit.gate_expand_2toN(unitary,
+            matrix = qt.operations.gates.gate_expand_2toN(unitary,
                                                  self.capacity, *ids)
         else:
             raise ValueError("Only one- or two-qubit unitary matrices supported.")
