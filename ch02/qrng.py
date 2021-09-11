@@ -26,3 +26,5 @@ if __name__ == "__main__":
         print(f"Our QRNG returned {random_sample}.")
 
 #test
+
+#new test
