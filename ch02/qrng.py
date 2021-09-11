@@ -24,7 +24,3 @@ if __name__ == "__main__":
     for idx_sample in range(10):
         random_sample = qrng(qsim)
         print(f"Our QRNG returned {random_sample}.")
-
-#test
-
-#new test
