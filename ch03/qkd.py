@@ -12,7 +12,6 @@
 ##
 
 from interface import QuantumDevice, Qubit
-from simulator import SingleQubitSimulator
 
 def prepare_classical_message(bit: bool, q: Qubit) -> None:
     if bit:
@@ -26,7 +25,7 @@ def send_classical_bit(device: QuantumDevice, bit: bool) -> None:
         prepare_classical_message(bit, q)
         result = eve_measure(q)
         q.reset()
-    assert result == bit
+    assert result is bit
 
 
 def qrng(device: QuantumDevice) -> bool:
@@ -47,10 +46,10 @@ def send_classical_bit_plusminus(device: QuantumDevice, bit: bool) -> None:
     with device.using_qubit() as q:
         prepare_classical_message_plusminus(bit, q)
         result = eve_measure_plusminus(q)
-        assert result == bit
+        assert result is bit
 
 def send_classical_bit_wrong_basis(device: QuantumDevice, bit: bool) -> None:
     with device.using_qubit() as q:
         prepare_classical_message(bit, q)
         result = eve_measure_plusminus(q)
-        assert result == bit, "Two parties do not have the same bit value"
+        assert result is bit, "Two parties do not have the same bit value"

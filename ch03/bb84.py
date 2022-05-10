@@ -74,8 +74,8 @@ def simulate_bb84(n_bits: int) -> list:
         ((your_message, your_basis), (eve_result, eve_basis)) = \
             send_single_bit_with_bb84(your_device, eve_device)
 
-        if your_basis == eve_basis:
-            assert your_message == eve_result
+        if your_basis is eve_basis:
+            assert your_message is eve_result
             key.append(your_message)
 
     print(f"Took {n_rounds} rounds to generate a {n_bits}-bit key.")

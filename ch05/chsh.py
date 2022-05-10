@@ -16,7 +16,6 @@ from functools import partial
 from typing import Tuple, Callable
 import numpy as np
 
-from interface import QuantumDevice, Qubit
 from simulator import Simulator
 
 Strategy = Tuple[Callable[[int], int], Callable[[int], int]]
@@ -27,8 +26,8 @@ def random_bit() -> int:
 def referee(strategy: Callable[[], Strategy]) -> bool:
     you, eve = strategy()
     your_input, eve_input = random_bit(), random_bit()
-    parity = 0 if you(your_input) == eve(eve_input) else 1
-    return parity == (your_input and eve_input)
+    parity = 0 if you(your_input) is eve(eve_input) else 1
+    return bool(parity) == (bool(your_input) and bool(eve_input))
 
 def est_win_probability(strategy: Callable[[], Strategy],
                         n_games: int = 1000) -> float:
