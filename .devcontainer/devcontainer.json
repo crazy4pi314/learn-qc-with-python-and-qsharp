@@ -1,5 +1,5 @@
 {
-    "image": "sckaiser/learn-qc-with-python-and-qsharp:latest",
+    "dockerFile": "./Dockerfile",
     "remoteEnv": {
         "IQSHARP_HOSTING_ENV": "QSHARP_BOOK_DEVCONTAINER"
     },
