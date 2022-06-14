@@ -1,7 +1,7 @@
 name: qsharp-book
 channels:
 - conda-forge
-- quantum-engineering 
+- microsoft
 dependencies:
 - notebook
 - numpy
@@ -9,4 +9,4 @@ dependencies:
 - qutip
 - matplotlib
 - pip
-- qsharp==0.17.2105.143879
+- qsharp==0.24.210930
