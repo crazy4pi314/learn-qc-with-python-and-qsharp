@@ -1,12 +1,12 @@
 #!/bin/env python
 # -*- coding: utf-8 -*-
 ##
-# interface.py: Contains classes that define the interface to the qubit 
+# interface.py: Contains classes that define the interface to the qubit
 #     simulator in simulator.py.
 ##
-# Copyright (c) Sarah Kaiser and Chris Granade.
+# Copyright (c) Sarah Kaiser and Cassandra Granade.
 # Code sample from the book "Learn Quantum Computing with Python and Q#" by
-# Sarah Kaiser and Chris Granade, published by Manning Publications Co.
+# Sarah Kaiser and Cassandra Granade, published by Manning Publications Co.
 # Book ISBN 9781617296130.
 # Code licensed under the MIT License.
 ##
@@ -17,22 +17,22 @@ from contextlib import contextmanager
 class Qubit(metaclass=ABCMeta):
 
     @abstractmethod
-    def swap(self, swap_target: "Qubit"): pass                           
+    def swap(self, swap_target: "Qubit"): pass
 
     @abstractmethod
-    def cnot(self, cnot_target: "Qubit"): pass                                
+    def cnot(self, cnot_target: "Qubit"): pass
 
     @abstractmethod
     def h(self): pass
 
     @abstractmethod
-    def x(self): pass  
-    
+    def x(self): pass
+
     @abstractmethod
-    def y(self): pass  
-    
+    def y(self): pass
+
     @abstractmethod
-    def z(self): pass  
+    def z(self): pass
 
     @abstractmethod
     def ry(self, angle: float): pass
@@ -46,23 +46,23 @@ class Qubit(metaclass=ABCMeta):
 
 class QuantumDevice(metaclass=ABCMeta):
     @abstractmethod
-    def allocate_qubit(self) -> Qubit:           
+    def allocate_qubit(self) -> Qubit:
         pass
 
     @abstractmethod
-    def deallocate_qubit(self, qubit: Qubit):   
+    def deallocate_qubit(self, qubit: Qubit):
         pass
 
     @contextmanager
-    def using_qubit(self):                       
+    def using_qubit(self):
         qubit = self.allocate_qubit()
         try:
             yield qubit
         finally:
-            qubit.reset()                        
+            qubit.reset()
             self.deallocate_qubit(qubit)
 
-    
+
     @contextmanager
     def using_register(self, n_qubits=1):
         qubits = [
@@ -73,5 +73,5 @@ class QuantumDevice(metaclass=ABCMeta):
             yield qubits
         finally:
             for qubit in qubits:
-                qubit.reset()                        
+                qubit.reset()
                 self.deallocate_qubit(qubit)

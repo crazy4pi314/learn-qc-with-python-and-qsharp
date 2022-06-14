@@ -3,16 +3,16 @@
 ##
 # simulator.py: Defines a class that implements a multi-qubit simulator.
 ##
-# Copyright (c) Sarah Kaiser and Chris Granade.
+# Copyright (c) Sarah Kaiser and Cassandra Granade.
 # Code sample from the book "Learn Quantum Computing with Python and Q#" by
-# Sarah Kaiser and Chris Granade, published by Manning Publications Co.
+# Sarah Kaiser and Cassandra Granade, published by Manning Publications Co.
 # Book ISBN 9781617296130.
 # Code licensed under the MIT License.
 ##
 
 from interface import QuantumDevice, Qubit
 import qutip as qt
-from qutip.qip.operations import hadamard_transform
+from qutip.qip.operations import hadamard_transform, gate_expand_1toN
 import numpy as np
 from typing import List
 
@@ -38,7 +38,7 @@ class SimulatedQubit(Qubit):
 
     def measure(self) -> bool:
         projectors = [
-            qt.circuit.gate_expand_1toN(
+            gate_expand_1toN(
                 qt.basis(2, outcome) * qt.basis(2, outcome).dag(),
                 self.parent.capacity,
                 self.qubit_id

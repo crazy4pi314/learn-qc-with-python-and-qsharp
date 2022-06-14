@@ -6,7 +6,7 @@
 [![](https://img.shields.io/github/license/crazy4pi314/learn-qc-with-python-and-qsharp)](https://github.com/crazy4pi314/learn-qc-with-python-and-qsharp/blob/main/LICENSE)
 
 
-This repository provides sample code for [_Learn Quantum Computing with Python and Q#_](https://www.manning.com/books/learn-quantum-computing-with-python-and-q-sharp) (Dr. Sarah Kaiser and Dr. Chris Granade, Manning Publications), available from [Manning Publications](https://www.manning.com/books/learn-quantum-computing-with-python-and-q-sharp?a_aid=learn-qc-granade&a_bid=ee23f338), [Amazon](https://www.amazon.com/Learn-Quantum-Computing-Python-hands/dp/1617296139/), and a variety of local resellers.
+This repository provides sample code for [_Learn Quantum Computing with Python and Q#_](https://www.manning.com/books/learn-quantum-computing-with-python-and-q-sharp) (Dr. Sarah Kaiser and Dr. Cassandra Granade, Manning Publications), available from [Manning Publications](https://www.manning.com/books/learn-quantum-computing-with-python-and-q-sharp?a_aid=learn-qc-granade&a_bid=ee23f338), [Amazon](https://www.amazon.com/Learn-Quantum-Computing-Python-hands/dp/1617296139/), and a variety of local resellers.
 
 Below, we provide some instructions on getting started with each sample; please see [Appendix A](https://livebook.manning.com/book/learn-quantum-computing-with-python-and-q-sharp/appendix-a?origin=product-toc) for more details.
 
