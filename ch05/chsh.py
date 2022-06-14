@@ -4,9 +4,9 @@
 # chsh.py: Implements the CHSH nonlocal game using the multi-qubit simulator
 #     in simulator.py with the simulator interface defined in interface.py.
 ##
-# Copyright (c) Sarah Kaiser and Chris Granade.
+# Copyright (c) Sarah Kaiser and Cassandra Granade.
 # Code sample from the book "Learn Quantum Computing with Python and Q#" by
-# Sarah Kaiser and Chris Granade, published by Manning Publications Co.
+# Sarah Kaiser and Cassandra Granade, published by Manning Publications Co.
 # Book ISBN 9781617296130.
 # Code licensed under the MIT License.
 ##

@@ -4,9 +4,9 @@
 # qkd.py: Defines functions needed to perform a basic quantum key exchange
 #     protocol.
 ##
-# Copyright (c) Sarah Kaiser and Chris Granade.
+# Copyright (c) Sarah Kaiser and Cassandra Granade.
 # Code sample from the book "Learn Quantum Computing with Python and Q#" by
-# Sarah Kaiser and Chris Granade, published by Manning Publications Co.
+# Sarah Kaiser and Cassandra Granade, published by Manning Publications Co.
 # Book ISBN 9781617296130.
 # Code licensed under the MIT License.
 ##
