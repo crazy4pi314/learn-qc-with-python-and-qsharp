@@ -12,7 +12,7 @@
 
 from interface import QuantumDevice, Qubit
 import qutip as qt
-from qutip.qip.operations import hadamard_transform
+from qutip.qip.operations import hadamard_transform, gate_expand_1toN
 import numpy as np
 from typing import List
 
@@ -38,7 +38,7 @@ class SimulatedQubit(Qubit):
 
     def measure(self) -> bool:
         projectors = [
-            qt.circuit.gate_expand_1toN(
+            gate_expand_1toN(
                 qt.basis(2, outcome) * qt.basis(2, outcome).dag(),
                 self.parent.capacity,
                 self.qubit_id
