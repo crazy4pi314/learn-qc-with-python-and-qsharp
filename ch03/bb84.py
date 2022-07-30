@@ -20,7 +20,6 @@ def sample_random_bit(device: QuantumDevice) -> bool:
     with device.using_qubit() as q:
         q.h()
         result = q.measure()
-        q.reset()
     return result
 
 def prepare_message_qubit(message: bool, basis: bool, q: Qubit) -> None:
@@ -114,4 +113,4 @@ if __name__ == "__main__":
 
     decrypted_message = apply_one_time_pad(encrypted_message, key)
     print(f"Eve decrypted to get:             {convert_to_hex(decrypted_message)}.")
-    
+

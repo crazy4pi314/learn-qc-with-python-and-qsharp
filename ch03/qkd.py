@@ -12,7 +12,6 @@
 ##
 
 from interface import QuantumDevice, Qubit
-from simulator import SingleQubitSimulator
 
 def prepare_classical_message(bit: bool, q: Qubit) -> None:
     if bit:
@@ -25,7 +24,6 @@ def send_classical_bit(device: QuantumDevice, bit: bool) -> None:
     with device.using_qubit() as q:
         prepare_classical_message(bit, q)
         result = eve_measure(q)
-        q.reset()
     assert result == bit
 
 
