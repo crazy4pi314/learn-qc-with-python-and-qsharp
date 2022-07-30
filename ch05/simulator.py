@@ -85,7 +85,7 @@ class Simulator(QuantumDevice):
 
     def _apply(self, unitary: qt.Qobj, ids: List[int]):
         if len(ids) == 1:
-            matrix = qt.circuit.gate_expand_1toN(
+            matrix = gate_expand_1toN(
                 unitary, self.capacity, ids[0]
             )
         else:
